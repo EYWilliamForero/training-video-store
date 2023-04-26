@@ -1,0 +1,14 @@
+.container-txt-search {
+  display: flex;
+  justify-content: flex-start;
+  border: solid 1px #ccc;
+  border-radius: 25px;
+  width: 350px;
+  padding: 5px 15px 5px 15px;
+
+  #txt-search {
+    width: inherit;
+    border: none;
+    outline: none;
+  }
+}

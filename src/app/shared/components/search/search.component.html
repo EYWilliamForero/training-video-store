@@ -1,0 +1,10 @@
+<div class="container-txt-search">
+  <input
+    [placeholder]="'Search by ' + description"
+    type="text"
+    id="txt-search"
+    #txtSearch
+    (input)="seacrhByTerms(txtSearch.value)"
+  />
+  <span class="material-symbols-outlined txt-search-icon"> search </span>
+</div>

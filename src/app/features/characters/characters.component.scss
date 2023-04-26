@@ -1,0 +1,38 @@
+.container-pagination {
+  margin-bottom: 30px;
+
+  .container-pagination-span-current-page {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+  }
+}
+
+.container-search {
+  margin-bottom: 15px;
+}
+
+.container-characters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .container-characters {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+  .container-characters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .container-characters {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

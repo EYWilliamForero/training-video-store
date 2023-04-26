@@ -1,0 +1,21 @@
+<h1>Rick and morty characters</h1>
+<div class="container-search">
+  <app-search description="name" (search)="searchByName($event)"> </app-search>
+</div>
+<div class="container-pagination">
+  <button *ngIf="currentPage > 1" id="button-prev" (click)="previousPage()">
+    <span class="material-symbols-outlined">skip_previous</span>
+  </button>
+  <span class="container-pagination-span-current-page">{{
+    this.currentPage
+  }}</span>
+  <button id="button-next" (click)="nextPage()">
+    <span class="material-symbols-outlined">skip_next</span>
+  </button>
+</div>
+<div class="container-characters">
+  <app-character
+    *ngFor="let chart of characterListFiltered"
+    [character]="chart"
+  ></app-character>
+</div>

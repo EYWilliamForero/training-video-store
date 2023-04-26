@@ -1,0 +1,15 @@
+<div class="container-card">
+  <section class="container-card-section">
+    <div class="container-card-section-with-color"></div>
+    <div class="container-card-section-without-color"></div>
+    <img
+      class="container-card-section-img"
+      [src]="character?.image || ''"
+      [alt]="character?.name || ''"
+    />
+  </section>
+  <section class="container-card-section">
+    <h3 id="character-name">{{ character?.name || "" }}</h3>
+    <h4 id="character-specie">{{ character?.species || "No defined" }}</h4>
+  </section>
+</div>
