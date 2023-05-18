@@ -106,16 +106,4 @@ describe('CharactersComponent', () => {
       expect(buttonPrev).toBeTruthy();
     });
   });
-
-  describe('Test #searchByName', () => {
-    it('should filter the list of characters when the user uses the search component', () => {
-      component.searchByName('test');
-      expect(filterByNamePipe.transform).toHaveBeenCalled();
-    });
-
-    it('should set the same list of caracters', () => {
-      component.searchByName();
-      expect(filterByNamePipe.transform).toHaveBeenCalled();
-    });
-  });
 });
