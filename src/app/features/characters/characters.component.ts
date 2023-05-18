@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Character } from 'src/app/shared/interfaces/character';
 import { CharactersService } from 'src/app/features/characters/characters.service';
 import { CharacterResponse } from 'src/app/shared/interfaces/character';
-import { FilterByNamePipe } from 'src/app/shared/pipes/filter-by-name.pipe';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-characters',
@@ -15,11 +15,12 @@ export class CharactersComponent {
   page$: Observable<number> = this.pageObserver.asObservable();
   currentPage: number = 0;
   characterList: Character[] = [];
-  characterListFiltered: Character[] = [];
+  filter: string = '';
+  isLoaderActive: boolean = false;
 
   constructor(
     private characterService: CharactersService,
-    private filterByNamePipe: FilterByNamePipe
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class CharactersComponent {
     //Pruebas unitarias de los compoentes que tengamos
 
     this.subscribeToPaginationStatus();
+    this.subscribeToLoaderStatus();
   }
 
   subscribeToPaginationStatus() {
@@ -40,11 +42,25 @@ export class CharactersComponent {
     });
   }
 
+  subscribeToLoaderStatus() {
+    this.loaderService.isLoaderActive$.subscribe({
+      next: (isActive: boolean) => {
+        this.isLoaderActive = isActive;
+      },
+    });
+  }
+
   getListOfCharacters(page: number) {
+    this.loaderService.showLoader();
     this.characterService.getListOfCharacters(page).subscribe({
       next: (characterResponse: CharacterResponse) => {
         this.characterList = characterResponse.results;
-        this.characterListFiltered = this.characterList;
+      },
+      error: () => {
+        this.loaderService.closeLoader();
+      },
+      complete: () => {
+        this.loaderService.closeLoader();
       },
     });
   }
@@ -60,9 +76,6 @@ export class CharactersComponent {
   }
 
   searchByName(name: string = '') {
-    this.characterListFiltered = this.filterByNamePipe.transform(
-      this.characterList,
-      name
-    ) as Character[];
+    this.filter = name;
   }
 }

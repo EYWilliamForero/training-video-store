@@ -12,7 +12,7 @@ describe('FilterByNamePipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should filter a list searchable ignore upper and lowwer cases', () => {
+  it('should filter a searchable list ignoring upper and lowwer cases', () => {
     let query: string = 'CaM';
     let dataFiltered: Searchable[] = pipe.transform(
       SEARCHABLE_LIST,
@@ -22,7 +22,7 @@ describe('FilterByNamePipe', () => {
     expect(dataFiltered.length).toEqual(2);
   });
 
-  it('should filter a list searchable ignore upper characters', () => {
+  it('should filter a searchable list ignoring upper characters', () => {
     let query: string = 'WILLY';
     let dataFiltered: Searchable[] = pipe.transform(
       SEARCHABLE_LIST,

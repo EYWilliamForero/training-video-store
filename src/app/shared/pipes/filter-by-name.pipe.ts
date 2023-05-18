@@ -5,7 +5,7 @@ import { Searchable } from '../interfaces/searchable';
   name: 'filterByName',
 })
 export class FilterByNamePipe implements PipeTransform {
-  transform(data: Searchable[], query: string): unknown {
+  transform(data: Searchable[], query: string): any[] {
     if (query == '' || query == undefined) {
       return data;
     }

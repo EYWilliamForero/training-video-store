@@ -1,3 +1,4 @@
+<app-loader *ngIf="isLoaderActive"></app-loader>
 <h1>Rick and morty characters</h1>
 <div class="container-search">
   <app-search description="name" (search)="searchByName($event)"> </app-search>
@@ -14,8 +15,11 @@
   </button>
 </div>
 <div class="container-characters">
-  <app-character
-    *ngFor="let chart of characterListFiltered"
-    [character]="chart"
-  ></app-character>
+  <ng-container
+    *ngIf="characterList | filterByName : filter as filteredCharacters"
+  >
+    <app-character *ngFor="let chart of filteredCharacters" [character]="chart">
+    </app-character>
+    <app-not-found *ngIf="filteredCharacters.length === 0"></app-not-found>
+  </ng-container>
 </div>
