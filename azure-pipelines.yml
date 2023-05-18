@@ -22,5 +22,5 @@ steps:
   displayName: 'npm install and build'
   
 - script: |    
-    npm run test
+    ng test --no-watch
   displayName: 'unit test'
