@@ -20,3 +20,7 @@ steps:
     npm install
     ng build
   displayName: 'npm install and build'
+  
+- script: |    
+    npm run test
+  displayName: 'unit test'
